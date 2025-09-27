@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lyric Vision AI Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script type="importmap">
 {
   "imports": {
@@ -27,12 +30,71 @@
       transform: translateY(0) scale(1);
     }
   }
-  .animate-lyric-in {
+  .animate-lyric-fade-in {
     animation: fadeIn-lyric 0.4s ease-out forwards;
   }
+
+  @keyframes slideInUp-lyric {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-lyric-slide-up {
+    animation: slideInUp-lyric 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes karaoke-fill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  .animate-lyric-karaoke > span {
+    animation: karaoke-fill linear forwards;
+    animation-duration: inherit; /* Inherits duration from parent */
+  }
+
+  @keyframes zoomIn-lyric {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .animate-lyric-zoom-in {
+    animation: zoomIn-lyric 0.5s ease-out forwards;
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  .animate-lyric-typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 1s steps(40, end) forwards;
+    animation-duration: inherit;
+    border-right: .15em solid orange; /* Optional: adds a blinking cursor */
+  }
+
 </style>
 </head>
-  <body class="bg-gray-900 text-white overflow-hidden">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

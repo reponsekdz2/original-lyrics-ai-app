@@ -12,11 +12,11 @@ const CreateCard: React.FC<{
     onClick: () => void;
     children?: React.ReactNode;
 }> = ({ icon, title, description, onClick, children }) => (
-    <div className="bg-gray-800/50 rounded-lg p-6 flex flex-col items-center text-center border-2 border-transparent hover:border-cyan-500/50 transition-all duration-300">
-        <div className="w-16 h-16 mb-4 text-cyan-400">{icon}</div>
+    <div className="dark:bg-gray-800/50 bg-white/50 rounded-lg p-6 flex flex-col items-center text-center border-2 border-transparent hover:border-indigo-500/50 transition-all duration-300 shadow-lg">
+        <div className="w-16 h-16 mb-4 text-indigo-500 dark:text-indigo-400">{icon}</div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-400 mb-4 flex-grow">{description}</p>
-        <button onClick={onClick} className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+        <p className="dark:text-gray-400 text-gray-600 mb-4 flex-grow">{description}</p>
+        <button onClick={onClick} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
             Select
         </button>
         {children}
@@ -41,9 +41,9 @@ const CreateView: React.FC<CreateViewProps> = ({ onSelectBackground }) => {
     };
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-gray-900">
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Start Your Creation</h1>
-            <p className="text-lg text-gray-400 mb-12 max-w-2xl">Choose a background to begin bringing your lyrics to life. Upload your own media or start with a beautiful gradient.</p>
+        <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-500">Start Your Creation</h1>
+            <p className="text-lg dark:text-gray-400 text-gray-600 mb-12 max-w-2xl">Choose a background to begin bringing your lyrics to life. Upload your own media or start with a beautiful gradient.</p>
 
             <div className="grid md:grid-cols-3 gap-8 w-full max-w-5xl">
                 {/* Upload Image */}
@@ -67,17 +67,17 @@ const CreateView: React.FC<CreateViewProps> = ({ onSelectBackground }) => {
                 </CreateCard>
                 
                 {/* Choose Gradient */}
-                 <div className="bg-gray-800/50 rounded-lg p-6 flex flex-col items-center text-center border-2 border-transparent hover:border-cyan-500/50 transition-all duration-300">
-                    <div className="w-16 h-16 mb-4 text-cyan-400"><GradientIcon/></div>
+                 <div className="dark:bg-gray-800/50 bg-white/50 rounded-lg p-6 flex flex-col items-center text-center border-2 border-transparent hover:border-indigo-500/50 transition-all duration-300 shadow-lg">
+                    <div className="w-16 h-16 mb-4 text-indigo-500 dark:text-indigo-400"><GradientIcon/></div>
                     <h3 className="text-xl font-bold mb-2">Use Gradient</h3>
-                    <p className="text-gray-400 mb-4 flex-grow">Select from a curated list of beautiful gradients.</p>
+                    <p className="dark:text-gray-400 text-gray-600 mb-4 flex-grow">Select from a curated list of beautiful gradients.</p>
                     <div className="w-full grid grid-cols-3 gap-2 mt-auto">
-                        {GRADIENTS.slice(1, 7).map(g => (
+                        {GRADIENTS.slice(1, 10).map(g => (
                             <button
                                 key={g.name}
                                 title={g.name}
                                 onClick={() => onSelectBackground('gradient', g.name)}
-                                className={`w-full h-10 rounded ${g.value} border-2 border-gray-700 hover:border-white transition-all`}
+                                className={`w-full h-10 rounded ${g.value} border-2 dark:border-gray-700 border-gray-300 hover:border-white dark:hover:border-white transition-all`}
                             />
                         ))}
                     </div>

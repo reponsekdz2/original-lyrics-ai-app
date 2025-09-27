@@ -138,3 +138,31 @@ Calculate start and end times sequentially. Assume each line is displayed for ar
         throw error;
     }
 };
+
+export const generateImageFromPrompt = async (prompt: string): Promise<File> => {
+    if (!process.env.API_KEY) {
+        throw new Error("API_KEY environment variable is not set.");
+    }
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+    try {
+        const response = await ai.models.generateImages({
+            model: 'imagen-4.0-generate-001',
+            prompt: `A vibrant, high-resolution, cinematic background image for a music video. Theme: ${prompt}. Style: abstract, atmospheric, visually stunning.`,
+            config: {
+                numberOfImages: 1,
+                outputMimeType: 'image/jpeg',
+                aspectRatio: '16:9',
+            },
+        });
+
+        const base64ImageBytes = response.generatedImages[0].image.imageBytes;
+        const fetchResponse = await fetch(`data:image/jpeg;base64,${base64ImageBytes}`);
+        const blob = await fetchResponse.blob();
+        return new File([blob], "ai-generated-background.jpg", { type: "image/jpeg" });
+
+    } catch (error) {
+        console.error("Error generating image with Imagen 2:", error);
+        throw error;
+    }
+};
